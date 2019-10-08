@@ -28,6 +28,8 @@ class TestShip < Minitest::Test
 
   def test_health_equals_length
     assert_equal true, @cruiser.length == @cruiser.health
+    # what test method makes the most sense here?
+    assert_equal 3, @cruiser.health
   end
 
   def test_ship_begins_not_sunk
@@ -35,7 +37,22 @@ class TestShip < Minitest::Test
   end
 
   def test_it_can_get_hit
+    @cruiser.hit
+    assert_equal 2, @cruiser.health
+# Next line is making sure that even though the health changed, the length stayed constant
+    assert_equal 3, @cruiser.length
 
+    @cruiser.hit
+    assert_equal 1, @cruiser.health
+  end
+
+  def test_hits_equal_to_ship_length_makes_ship_sunk
+    @cruiser.hit
+    @cruiser.hit
+    assert_equal false, @cruiser.sunk?
+
+    @cruiser.hit
+    assert_equal true, @cruiser.sunk?
   end
 
 

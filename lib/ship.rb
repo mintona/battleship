@@ -14,7 +14,20 @@ class Ship
   # end
 
   def sunk?
-    @sunk
+
+    # lines 19-23 is alternate code.
+    if @health == 0
+      @sunk = true
+    else
+      @sunk = false
+    end
+
+    # why didn't @sunk = true if @health == 0 work as expected??
+    # or # @sunk = false unless @health == 0 work as expected either?
+  end
+
+  def hit
+    @health -= 1
   end
 
 
