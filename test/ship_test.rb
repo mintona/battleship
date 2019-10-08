@@ -2,7 +2,7 @@ require "minitest/autorun"
 require "minitest/pride"
 require_relative "../lib/ship"
 
-require "pry"
+
 
 class TestShip < Minitest::Test
 
