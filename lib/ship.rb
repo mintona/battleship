@@ -5,7 +5,7 @@ class Ship
   def initialize(name, length)
     @name = name
     @length = length
-    @health = @length
+    @health = @length # Does this need to be an instance variable? or can length be length.
     @sunk = false
   end
 
