@@ -26,10 +26,21 @@ class Cell
   end
 
   def fire_upon
-    @ship.health -= 1
-    @fired_on = true
+    if !empty?
+      @ship.health -= 1
+      @fired_on = true
+    else empty?
+      @fired_on = true
+    end
   end
 
+  def render
+    if empty? == true && fired_upon? == true
+      "M"
+    elsif empty?
+      "."
+    end
+  end
 
 
 end
