@@ -3,7 +3,6 @@ require "minitest/pride"
 require_relative "../lib/ship"
 
 
-
 class TestShip < Minitest::Test
 
   def setup
@@ -55,6 +54,8 @@ class TestShip < Minitest::Test
   end
 
   def test_hits_equal_to_ship_length_makes_ship_sunk
+    assert_equal false, @cruiser.sunk?
+
     @cruiser.hit
     @cruiser.hit
     assert_equal false, @cruiser.sunk?
@@ -62,6 +63,5 @@ class TestShip < Minitest::Test
     @cruiser.hit
     assert_equal true, @cruiser.sunk?
   end
-
 
 end
