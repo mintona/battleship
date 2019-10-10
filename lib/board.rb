@@ -28,16 +28,39 @@ class Board
     cells.keys.include?(coordinate)
   end
 
-  def valid_placement?(ship, coordinates)
-    coords = cells.keys
-    consecutive_coordinates = []
-    coords.each_cons(coordinates.length) { |coord| consecutive_coordinates << coord }
 
-    if (ship.length == coordinates.length) && consecutive_coordinates.include?(coordinates)
+
+
+
+  def valid_placement?(ship, coordinates)
+    ship.length == coordinates.length
+  end
+
+  def letters_same?(ship, coordinates)
+    # First check to see if the letters all match by checking all coordinates against the letter of the first coordinate
+    coordinates.all? { |coord| coord[0] == coordinates[0][0]}
+  end
+
+  def numbers_consecutive?(ship, coordinates)
+      #If the letters matched, then move on to checking if the numbers are consecutive.
+      coord_numbers = coordinates.map { |coord| coord[-1].to_i}
+      #Create a range based on coordinte numbers
+      range = coord_numbers[0]..coord_numbers[-1]
+      #create an empty array to put the consecutive numbers based on the range in
+      con_arry = []
+      #run the each_cons method on the range array using the numbers of coordinates as the argument and putting the consecutive numbers into the con_arry
+      range.to_a.each_cons(coordinates.length) { |n| con_arry << n }
+      # check to see if the con_arry includes the original coordinates
+      con_arry.include?(coordinates)
+  end
+
+  def coordinates_consecutive?(ship, coordinates)
+    if letters_same?(ship, coordinates) && numbers_consecutive?(ship, coordinates)  
       true
-    else
-      false
+    #elsif numbers are the same && letters are consecutive
+    #  true
     end
+  end
       # If coordinates are consecutive
 
 
@@ -47,7 +70,7 @@ class Board
     # Test must be consecutive coordinates
     # Test can't be diagnol coordinates
     # Test it still passes given all of that criteria
-  end
+
 
 
   # def cells - maybe we can make this work another way later... it's returning the new cell in an array and we don't want it in an array

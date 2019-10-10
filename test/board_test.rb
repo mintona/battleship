@@ -39,7 +39,6 @@ class BoardTest < Minitest::Test
    end
 
    def test_it_can_validate_placement_of_ships_based_on_ship_length
-#binding.pry
 
      assert_equal true, @board.valid_placement?(@cruiser, ["A1", "A2", "A3"])
      assert_equal true, @board.valid_placement?(@submarine, ["B3", "B4"])
@@ -49,7 +48,21 @@ class BoardTest < Minitest::Test
 
    end
 
-   def test_it_can_validate_placement_of_ships_based_on_consecutive_coordinates
+   def test_coordinates_consecutive?
+     assert_equal false, @board.coordinates_consecutive?(@cruiser, ["A1", "A2", "A4"])
+
+     assert_equal false, @board.coordinates_consecutive?(@submarine, ["A1", "C1"])
+
+     assert_equal false, @board.coordinates_consecutive?(@cruiser, ["A3", "A2", "A1"])
+
+     assert_equal false, @board.coordinates_consecutive?(@submarine, ["C1", "B1"])
+
+   end
+
+   def
+     skip test_it_can_validate_placement_of_ships_based_on_consecutive_coordinates
+
+ binding.pry
      assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
 
      assert_equal false, @board.valid_placement?(@submarine, ["A1", "C1"])
