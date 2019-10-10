@@ -59,10 +59,8 @@ class BoardTest < Minitest::Test
 
    end
 
-   def
-     skip test_it_can_validate_placement_of_ships_based_on_consecutive_coordinates
-
- binding.pry
+   def test_it_can_validate_placement_of_ships_based_on_consecutive_coordinates
+     skip
      assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
 
      assert_equal false, @board.valid_placement?(@submarine, ["A1", "C1"])
