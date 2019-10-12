@@ -17,8 +17,8 @@ class Cell
     end
   end
 
-  def place_ship(cruiser)
-    @ship = cruiser
+  def place_ship(ship_type)
+    @ship = ship_type
   end
 
   def fired_upon?
