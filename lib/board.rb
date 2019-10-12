@@ -98,4 +98,20 @@ class Board
     end
     @cells
   end
+
+  def render(show_ship = false)
+    a = ["A1", "A2", "A3", "A4"]
+    b = ["B1", "B2", "B3", "B4"]
+    c = ["C1", "C2", "C3", "C4"]
+    d = ["D1", "D2", "D3", "D4"]
+
+    a = a.map { |coord| @cells[coord].render(show_ship) }
+    b = b.map { |coord| @cells[coord].render(show_ship) }
+    c = c.map { |coord| @cells[coord].render(show_ship) }
+    d = d.map { |coord| @cells[coord].render(show_ship) }
+
+    "  1 2 3 4 \n" + "A #{a.join(" ")} \n" + "B #{b.join(" ")} \n" + "C #{c.join(" ")} \n" + "D #{d.join(" ")} \n"
+  end
+
+
 end
