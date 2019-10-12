@@ -161,4 +161,29 @@ class BoardTest < Minitest::Test
 
     assert_equal true, @board.valid_placement?(@submarine, ["B1", "B2"])
   end
+
+  def test_it_can_render_when_ships_are_hidden
+    @board.add_cells
+
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @board.render
+
+    @board.place(@submarine, ["D3", "D4"])
+
+    assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @board.render
+  end
+
+  def test_it_can_render_showing_ships
+    @board.add_cells
+
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", @board.render(true)
+
+    @board.place(@submarine, ["D3", "D4"])
+
+    assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . S S \n", @board.render(true)
+  end
+
 end
