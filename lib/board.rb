@@ -10,6 +10,7 @@ class Board
 
     coordinates_array.each { |c| @cells[c] = Cell.new(c) }
 
+
     # @cells = {
     #   "A1" => Cell.new("A1"),
     #   "A2" => Cell.new("A2"),
@@ -70,23 +71,31 @@ class Board
     end
   end
 
-  def valid_placement?(ship, coordinates)
-    (coordinates.all? { |coord| valid_coordinate?(coord) }) && (ship.length == coordinates.length) && coordinates_consecutive?(ship, coordinates)
+  def cells_empty?(ship_type, coordinates)
+    coordinates.all? do |coord|
+      @cells[coord].empty?
+    end
   end
 
-  def place(ship_class, coordinates)
+  def valid_placement?(ship_type, coordinates)
+    if (coordinates.all? { |coord| valid_coordinate?(coord) })
+      cells_empty?(ship_type, coordinates) && (ship_type.length == coordinates.length) && coordinates_consecutive?(ship_type, coordinates)
+    else
+      false
+    end
+  end
+
+  def place(ship_type, coordinates)
 
     # Check to be sure the coordinates are valid.
     # if valid_placement?(ship, coordinates) == true
+    if valid_placement?(ship_type, coordinates)
 
     #board_cells = cells
-    coordinates.each do |c|
-      @cells[c].ship = ship_class
+      coordinates.each do |c|
+        @cells[c].ship = ship_type # Should we use a cell method for this instead of just setting the ship value to the name of the ship?
+      end
     end
-      # Take the coordinates and tell that cell that is has a ship in it.
-      # coordinates.each do |coordinate|
-      #cells[coordinate].ship = ship
-      # end
     @cells
   end
 end
