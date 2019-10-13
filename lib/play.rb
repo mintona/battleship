@@ -13,12 +13,12 @@ class Play
   # end
 
   def play_game
-    if @start == true
+    #if @start == true
       create_a_board_with_cells
       create_computer_player
       computer_takes_first_turn
       puts "I have laid out my ships on the grid."
-      puts "You now need to lay out your two ships"
+      puts "You now need to lay out your two ships."
       puts "The Cruiser is two units long and the Submarine is three units long."
       puts "  1 2 3 4"
       puts "A . . . ."
@@ -29,8 +29,8 @@ class Play
       print ">"
       user_coordinates = gets.chomp.upcase.split
       @gameboard.validate_placement?(@human_player.ships[0], user_coordinates) # need to created human player class, add the ships, etc.
-    else
-      return nil
+    #else
+    #  return nil
     end
 
     # puts "Enter P to play. Enter Q to quit"
@@ -46,7 +46,7 @@ class Play
     #   puts "Please enter a valid input."
     #   # Add code to re-run the code until the user either says yes or no
     # end
-  end
+
 
   def create_a_board_with_cells
     @gameboard = Board.new
