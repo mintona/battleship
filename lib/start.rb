@@ -3,7 +3,7 @@ class Start
 
   def initialize
     @play_game = false
-    @play = nil
+    @round = nil
   end
 
   def greeting
@@ -28,9 +28,9 @@ class Start
     answer = gets.chomp
     if answer.downcase == "p"
       @play_game = true
-      @play = Play.new
-      @play.start = true
-      @play.play_game
+      @round = Round.new
+      @round.start = true
+      @round.play_game
       # create_a_board_with_cells
       # create_computer_player
     elsif answer.downcase == "q"
