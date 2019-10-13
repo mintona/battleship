@@ -7,7 +7,19 @@ class Start
   end
 
   def greeting
-    puts "\n\nWelcome to BATTLESHIP\n\n"
+    puts "\n\n         *~*~*~*~*~*~*~*~*~*~ Welcome to BATTLESHIP *~*~*~*~*~*~*~*~*~*~\n\n\n"
+
+    puts "                                          # #  ( )"
+    puts "                                       ___#_#___|__"
+    puts "                                   _  |____________|  _"
+    puts "                            _=====| | |            | | |==== _"
+    puts "                      =====| |.---------------------------. | |===="
+    puts "        <--------------------'   .  .  .  .  .  .  .  .   '--------------/"
+    puts "          |                                                             /"
+    puts "           |_______________________________________________WWS_________/"
+    puts "       wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    puts "     wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    puts "        wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww \n\n"
   end
 
   def play?
