@@ -3,7 +3,7 @@ class Start
 
   def initialize
     @play_game = false
-    @play = nil
+    @round = nil
   end
 
   def greeting
@@ -35,9 +35,9 @@ class Start
 
     if answer.downcase == "p"
       @play_game = true
-      @play = Play.new
-      @play.start = true
-      @play.play_game
+      @round = Round.new
+      @round.start = true
+      @round.play_game
     elsif answer.downcase == "q"
       puts "OK. Come back another time."
     end

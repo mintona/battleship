@@ -1,7 +1,7 @@
 require_relative './lib/ship.rb'
 require_relative './lib/cell.rb'
 require_relative './lib/board.rb'
-require_relative './lib/play.rb'
+require_relative './lib/round.rb'
 require_relative './lib/computer.rb'
 require_relative './lib/person.rb'
 require_relative './lib/start.rb'
