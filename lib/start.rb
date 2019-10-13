@@ -26,19 +26,22 @@ class Start
     puts "Enter P to play. Enter Q to quit"
     print ">"
     answer = gets.chomp
+
+    until answer.downcase == "p" or answer.downcase == "q" do
+      puts "Please enter a valid input."
+      print ">"
+      answer = gets.chomp
+    end
+
     if answer.downcase == "p"
       @play_game = true
       @play = Play.new
       @play.start = true
       @play.play_game
-      # create_a_board_with_cells
-      # create_computer_player
     elsif answer.downcase == "q"
       puts "OK. Come back another time."
-    else
-      puts "Please enter a valid input."
-      # Add code to re-run the code until the user either says yes or no
     end
+
   end
 
 end
