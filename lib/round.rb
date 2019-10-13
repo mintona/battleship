@@ -15,6 +15,7 @@ class Round
       create_human_player
       computer_takes_first_turn
       human_takes_first_turn
+      turn
   end
 
   def create_a_board_with_cells
@@ -46,43 +47,84 @@ class Round
 
   def human_takes_first_turn
     puts "The Cruiser is two units long and the Submarine is three units long."
+
     puts @human_gameboard.render
 
-    puts "Enter the squares for the #{@human_player.ships[0].name} (#{@human_player.ships[0].length} spaces), ex: B1 B2 B3"
-    print ">"
-    user_coordinates_1 = gets.chomp.upcase.split
-
-    until @human_gameboard.valid_placement?(@human_player.ships[0], user_coordinates_1) == true
-      puts "Those are invalid coordinates. Please try again:"
+    @human_player.ships.each do |ship|
+      puts "Enter the squares for the #{ship.name} (#{ship.length} spaces), ex:"
       print ">"
       user_coordinates_1 = gets.chomp.upcase.split
+
+        until @human_gameboard.valid_placement?(ship, user_coordinates_1) == true
+          puts "Those are invalid coordinates. Please try again:"
+          print ">"
+          user_coordinates_1 = gets.chomp.upcase.split
+        end
+
+        @human_gameboard.place(ship, user_coordinates_1)
+        puts @human_gameboard.render(true)
     end
 
-    if @human_gameboard.valid_placement?(@human_player.ships[0], user_coordinates_1) == true
-      # Need loop functionaliy here so we can ask for coordinates until we get valid coordinates
-       @human_gameboard.place(@human_player.ships[0], user_coordinates_1)
-       puts @human_gameboard.render(true)
-       puts "Enter the squares for the #{@human_player.ships[1].name} (#{@human_player.ships[1].length} spaces)"
-       print ">"
+    #
+    #
+    # puts "Enter the squares for the #{@human_player.ships[0].name} (#{@human_player.ships[0].length} spaces), ex: B1 B2 B3"
+    # print ">"
+    # user_coordinates_1 = gets.chomp.upcase.split
+    #
+    #   until @human_gameboard.valid_placement?(@human_player.ships[0], user_coordinates_1) == true
+    #     puts "Those are invalid coordinates. Please try again:"
+    #     print ">"
+    #     user_coordinates_1 = gets.chomp.upcase.split
+    #   end
+    #
+    #  @human_gameboard.place(@human_player.ships[0], user_coordinates_1)
+    #  puts @human_gameboard.render(true)
+    #  puts "Enter the squares for the #{@human_player.ships[1].name} (#{@human_player.ships[1].length} spaces)"
+    #  print ">"
+    #
+    #  user_coordinates_2 = gets.chomp.upcase.split
+    #
+    #  until @human_gameboard.valid_placement?(@human_player.ships[1], user_coordinates_2) == true
+    #    puts "Those are invalid coordinates. Please try again:"
+    #    print ">"
+    #    user_coordinates_2 = gets.chomp.upcase.split
+    #  end
+    #
+    #  @human_gameboard.place(@human_player.ships[1], user_coordinates_2)
+    #  puts @human_gameboard.render(true)
+  end
 
-       user_coordinates_2 = gets.chomp.upcase.split
+  def turn
+    # loop here to run until the number of turns equals the number of ships in the player and computer ships array
+    # add a counter here? counts each turn every time it runs?
+    puts "=============COMPUTER BOARD============="
+    puts @computer_gameboard.render
+    puts "==============PLAYER BOARD=============="
+    puts @human_gameboard.render(true)
 
-       until @human_gameboard.valid_placement?(@human_player.ships[1], user_coordinates_2) == true
-         puts "Those are invalid coordinates. Please try again:"
-         print ">"
-         user_coordinates_2 = gets.chomp.upcase.split
-       end
+    puts "Enter the coordinate for your shot:"
+    print ">"
+    answer = gets.chomp.upcase
 
-       if @human_gameboard.valid_placement?(@human_player.ships[1], user_coordinates_2) == true
-         @human_gameboard.place(@human_player.ships[1], user_coordinates_2)
-         puts @human_gameboard.render(true)
-       # else
-       #   puts "Those are invalid coordinates. Please try again:"
-       #   print ">"
-       end
-     # else
-     #   puts "Those are invalid coordinates. Please try again:"
-     #   print ">"
-     end
+    until @computer_gameboard.valid_coordinate?(answer) == true && !@computer_gameboard.cells[answer].fired_upon?
+      #need to add something here about if they already fired on that shot they need to take another shot. some code above to check on that
+      puts "Please enter a valid coordinate:"
+      print ">"
+      answer = gets.chomp.upcase
+    end
+
+    #then the computer takes a shot based on a random spot on the board
+
+    @computer_gameboard.cells[answer].fire_upon
+      if @computer_gameboard.cells[answer].render == "M"
+        result = "miss."
+      elsif @computer_gameboard.cells[answer].render == "H"
+        result = "hit!"
+      elsif @computer_gameboard.cells[answer].render == "X"
+        result = "hit and sunk the #{@computer_gameboard.cells[answer].ship.name}!"
+      end
+
+    puts "Your shot on #{answer} was a #{result}"
+    #then we would display the result of the computer's shot
   end
 end
