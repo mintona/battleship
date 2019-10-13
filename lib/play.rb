@@ -52,16 +52,38 @@ class Round
     print ">"
     user_coordinates_1 = gets.chomp.upcase.split
 
-    @human_gameboard.place(@human_player.ships[0], user_coordinates_1)
+    until @human_gameboard.valid_placement?(@human_player.ships[0], user_coordinates_1) == true
+      puts "Those are invalid coordinates. Please try again:"
+      print ">"
+      user_coordinates_1 = gets.chomp.upcase.split
+    end
 
-    puts @human_gameboard.render(true)
 
-    puts "Enter the squares for the #{@human_player.ships[1].name} (#{@human_player.ships[1].length} spaces)"
-    print ">"
-    user_coordinates_2 = gets.chomp.upcase.split
+    if @human_gameboard.valid_placement?(@human_player.ships[0], user_coordinates_1) == true
+      # Need loop functionaliy here so we can ask for coordinates until we get valid coordinates
+       @human_gameboard.place(@human_player.ships[0], user_coordinates_1)
+       puts @human_gameboard.render(true)
+       puts "Enter the squares for the #{@human_player.ships[1].name} (#{@human_player.ships[1].length} spaces)"
+       print ">"
 
-    @human_gameboard.place(@human_player.ships[1], user_coordinates_2)
+       user_coordinates_2 = gets.chomp.upcase.split
 
-    puts @human_gameboard.render(true)
+       until @human_gameboard.valid_placement?(@human_player.ships[1], user_coordinates_2) == true
+         puts "Those are invalid coordinates. Please try again:"
+         print ">"
+         user_coordinates_2 = gets.chomp.upcase.split
+       end
+
+       if @human_gameboard.valid_placement?(@human_player.ships[1], user_coordinates_2) == true
+         @human_gameboard.place(@human_player.ships[1], user_coordinates_2)
+         puts @human_gameboard.render(true)
+       # else
+       #   puts "Those are invalid coordinates. Please try again:"
+       #   print ">"
+       end
+     # else
+     #   puts "Those are invalid coordinates. Please try again:"
+     #   print ">"
+     end
   end
 end
