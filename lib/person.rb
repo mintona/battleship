@@ -6,11 +6,9 @@ class Person
     @ships = []
   end
 
-  def add_ships
-    @ships << cruiser = Ship.new("Cruiser", 3)
-    @ships << submarine = Ship.new("Submarine", 2)
+  def add_ships(ship)
+    @ships << ship 
+    @ships << ship
   end
-
-
 
 end
