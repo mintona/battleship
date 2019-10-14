@@ -7,7 +7,6 @@ class Person
   end
 
   def add_ships(ship)
-    @ships << ship 
     @ships << ship
   end
 

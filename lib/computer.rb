@@ -7,7 +7,6 @@ class Computer
 
   def add_ships(ship)
     @ships << ship
-    @ships << ship
   end
 
   # def access_ships

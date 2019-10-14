@@ -30,12 +30,23 @@ class Round
 
   def create_computer_player
     @computer_player = Computer.new
-    @computer_player.add_ships
+
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    @computer_player.add_ships(cruiser)
+    @computer_player.add_ships(submarine)
   end
 
   def create_human_player
     @human_player = Person.new
-    @human_player.add_ships
+
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    @human_player.add_ships(cruiser)
+    @human_player.add_ships(submarine)
+
   end
 
   def computer_places_ships
