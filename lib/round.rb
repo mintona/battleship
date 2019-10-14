@@ -46,7 +46,6 @@ class Round
 
     @human_player.add_ships(cruiser)
     @human_player.add_ships(submarine)
-
   end
 
   def computer_places_ships
@@ -58,26 +57,10 @@ class Round
       @computer_gameboard.place(ship, random_coordinates)
     end
 
-
-      # until @computer_gameboard.valid_placement?(@computer_player.ships[0], cruiser_coordinates)
-      #   cruiser_coordinates = coordinates_array.sample(3)
-      # end
-
-#      until @computer_gameboard.valid_placement?(@computer_player.ships
-
     puts "I have laid out my ships on the grid."
     puts "You now need to lay out your two ships."
 
   end
-
-  # def computer_takes_first_turn
-  #   # this is actually where we will do the random generator, not in the ship class.
-  #   @computer_gameboard.place(@computer_player.ships[0], ["A1", "A2", "A3"])
-  #   @computer_gameboard.place(@computer_player.ships[1], ["D3", "D4"])
-  #   @computer_gameboard
-  #   puts "I have laid out my ships on the grid."
-  #   puts "You now need to lay out your two ships."
-  # end
 
   def human_takes_first_turn
     puts "The Cruiser is two units long and the Submarine is three units long."
@@ -87,45 +70,17 @@ class Round
     @human_player.ships.each do |ship|
       puts "Enter the squares for the #{ship.name} (#{ship.length} spaces), ex:"
       print ">"
-      user_coordinates_1 = gets.chomp.upcase.split
+      user_coordinates = gets.chomp.upcase.split
 
-        until @human_gameboard.valid_placement?(ship, user_coordinates_1) == true
+        until @human_gameboard.valid_placement?(ship, user_coordinates) == true
           puts "Those are invalid coordinates. Please try again:"
           print ">"
-          user_coordinates_1 = gets.chomp.upcase.split
+          user_coordinates = gets.chomp.upcase.split
         end
 
-        @human_gameboard.place(ship, user_coordinates_1)
+        @human_gameboard.place(ship, user_coordinates)
         puts @human_gameboard.render(true)
     end
-
-    #
-    #
-    # puts "Enter the squares for the #{@human_player.ships[0].name} (#{@human_player.ships[0].length} spaces), ex: B1 B2 B3"
-    # print ">"
-    # user_coordinates_1 = gets.chomp.upcase.split
-    #
-    #   until @human_gameboard.valid_placement?(@human_player.ships[0], user_coordinates_1) == true
-    #     puts "Those are invalid coordinates. Please try again:"
-    #     print ">"
-    #     user_coordinates_1 = gets.chomp.upcase.split
-    #   end
-    #
-    #  @human_gameboard.place(@human_player.ships[0], user_coordinates_1)
-    #  puts @human_gameboard.render(true)
-    #  puts "Enter the squares for the #{@human_player.ships[1].name} (#{@human_player.ships[1].length} spaces)"
-    #  print ">"
-    #
-    #  user_coordinates_2 = gets.chomp.upcase.split
-    #
-    #  until @human_gameboard.valid_placement?(@human_player.ships[1], user_coordinates_2) == true
-    #    puts "Those are invalid coordinates. Please try again:"
-    #    print ">"
-    #    user_coordinates_2 = gets.chomp.upcase.split
-    #  end
-    #
-    #  @human_gameboard.place(@human_player.ships[1], user_coordinates_2)
-    #  puts @human_gameboard.render(true)
   end
 
   def turn
