@@ -118,9 +118,9 @@ class Round
 
   def turn_2
 
-    random_shot = @human_gameboard.cells.keys.sample(1)
-      until @human_gameboard.valid_coordinate?(random_shot) == true && !@computer_gameboard.cells[random_shot].fired_upon?
-        random_shot = @human_gameboard.cells.keys.sample(1)
+    random_shot = @human_gameboard.cells.keys.sample(1).join
+      until @human_gameboard.valid_coordinate?(random_shot) == true && !@human_gameboard.cells[random_shot].fired_upon?
+        random_shot = @human_gameboard.cells.keys.sample(1).join
       end
 
     @human_gameboard.cells[random_shot].fire_upon
@@ -131,6 +131,8 @@ class Round
       elsif @human_gameboard.cells[random_shot].render == "X"
         result = "The computer hit and sunk the #{@human_gameboard.cells[answer].ship.name}!"
       end
+
+      puts "#{result}"
 
   end
 
