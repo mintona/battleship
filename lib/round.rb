@@ -16,8 +16,9 @@ class Round
       create_human_player
       computer_places_ships
       human_takes_first_turn
-      until @human_player.ships.all? { |ship| ship.sunk? } || @computer_player.ships.all? { |ship| ship.sunk? }
+      until @human_player.ships.all? { |ship| ship.sunk? } || @computer_player.ships.all? { |ship| ship.sunk? } #make these 2 seperate methods that return booleans
         turn
+        #can check here to see if all ships are sunk yet... or just take a turn that doens't depend on if its a human or computer by checking which player is taking the turn
         turn_2
           # Can we STOP taking turns in general once there is a winner? ie. if user sinks the computer ship, can the computer be prevented from taking the last turn.
       end
@@ -67,7 +68,7 @@ class Round
   end
 
   def human_takes_first_turn
-    puts "The Cruiser is two units long and the Submarine is three units long."
+    puts "The Cruiser is three units long and the Submarine is two units long."
 
     puts @human_gameboard.render
 
@@ -112,7 +113,7 @@ class Round
       elsif @computer_gameboard.cells[answer].render == "H"
         result = "hit!"
       elsif @computer_gameboard.cells[answer].render == "X"
-        result = "hit and sunk the #{@computer_gameboard.cells[answer].ship.name}!"
+        result = "hit and sunk my #{@computer_gameboard.cells[answer].ship.name}!"
       end
 
     puts "Your shot on #{answer} was a #{result}"
@@ -128,11 +129,11 @@ class Round
 
     @human_gameboard.cells[random_shot].fire_upon
       if @human_gameboard.cells[random_shot].render == "M"
-        result = "The computer missed your ships."
+        result = "My shot on #{random_shot} was a miss."
       elsif @human_gameboard.cells[random_shot].render == "H"
-        result = "The computer hit your ship!"
+        result = "My shot on #{random_shot} was a hit!"
       elsif @human_gameboard.cells[random_shot].render == "X"
-        result = "The computer hit and sunk the #{@human_gameboard.cells[answer].ship.name}!"
+        result = "My shot on #{random_shot} sunk your #{@human_gameboard.cells[random_shot].ship.name}!"
       end
 
       puts "#{result}"
@@ -143,7 +144,10 @@ class Round
       puts "I won!"
     elsif @computer_player.ships.all? { |ship| ship.sunk? }
       puts "You won!"
-    end 
+    end
+    puts "Would you like to play again?"
+
+
   end
 
 end

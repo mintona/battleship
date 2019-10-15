@@ -2,7 +2,7 @@ class Start
   attr_accessor :play_game, :play
 
   def initialize
-    @play_game = false
+    @play_game = true
     @round = nil
   end
 
@@ -34,11 +34,12 @@ class Start
     end
 
     if answer.downcase == "p"
-      @play_game = true
+      #@play_game = true
       @round = Round.new
       @round.start = true
       @round.play_game
     elsif answer.downcase == "q"
+      @play_game = false
       puts "OK. Come back another time."
     end
 

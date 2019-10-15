@@ -19,5 +19,15 @@ require 'pry'
 
 start = Start.new
 
+
 start.greeting
-start.play?
+#start.play?
+
+
+until start.play_game == false
+  start.play?
+end
+
+#how do we get the game to play over and over
+# start.greeting
+# start.play?
