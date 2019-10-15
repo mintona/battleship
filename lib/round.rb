@@ -14,11 +14,14 @@ class Round
       create_a_board_with_cells
       create_computer_player
       create_human_player
-    #  computer_takes_first_turn
       computer_places_ships
       human_takes_first_turn
-      turn
-      turn_2
+      until @human_player.ships.all? { |ship| ship.sunk? } || @computer_player.ships.all? { |ship| ship.sunk? }
+        turn
+        turn_2
+          # Can we STOP taking turns in general once there is a winner? ie. if user sinks the computer ship, can the computer be prevented from taking the last turn.
+      end
+      end_game
   end
 
   def create_a_board_with_cells
@@ -133,8 +136,14 @@ class Round
       end
 
       puts "#{result}"
-
   end
 
+  def end_game
+    if @human_player.ships.all? { |ship| ship.sunk? }
+      puts "I won!"
+    elsif @computer_player.ships.all? { |ship| ship.sunk? }
+      puts "You won!"
+    end 
+  end
 
 end
