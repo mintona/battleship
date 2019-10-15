@@ -5,29 +5,18 @@ require_relative './lib/round.rb'
 require_relative './lib/computer.rb'
 require_relative './lib/person.rb'
 require_relative './lib/start.rb'
+require_relative './lib/gameplay.rb'
+require_relative './lib/setup.rb'
 require 'pry'
 
-
-# play = Play.new
-#
-# play.greeting
-# play.play?
-# play.computer_takes_first_turn
-# puts play.gameboard.render(true)
-
-# might need to create a board here and then have the methods of play take the argument of the board so it can access the cells of the board
-
-start = Start.new
-
-
-start.greeting
-#start.play?
-
-
-until start.play_game == false
-  start.play?
-end
-
-#how do we get the game to play over and over
+# The code below works for master as it is as of 10/15 @ 4 pm
+# start = Start.new
 # start.greeting
-# start.play?
+# until start.play_game == false
+#   start.play?
+# end
+
+
+
+game_1 = Gameplay.new
+binding.pry
