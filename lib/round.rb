@@ -18,6 +18,7 @@ class Round
       computer_places_ships
       human_takes_first_turn
       turn
+      turn_2
   end
 
   def create_a_board_with_cells
@@ -102,8 +103,6 @@ class Round
       answer = gets.chomp.upcase
     end
 
-    #then the computer takes a shot based on a random spot on the board
-
     @computer_gameboard.cells[answer].fire_upon
       if @computer_gameboard.cells[answer].render == "M"
         result = "miss."
@@ -116,4 +115,24 @@ class Round
     puts "Your shot on #{answer} was a #{result}"
     #then we would display the result of the computer's shot
   end
+
+  def turn_2
+
+    random_shot = @human_gameboard.cells.keys.sample(1)
+      until @human_gameboard.valid_coordinate?(random_shot) == true && !@computer_gameboard.cells[random_shot].fired_upon?
+        random_shot = @human_gameboard.cells.keys.sample(1)
+      end
+
+    @human_gameboard.cells[random_shot].fire_upon
+      if @human_gameboard.cells[random_shot].render == "M"
+        result = "The computer missed your ships."
+      elsif @human_gameboard.cells[random_shot].render == "H"
+        result = "The computer hit your ship!"
+      elsif @human_gameboard.cells[random_shot].render == "X"
+        result = "The computer hit and sunk the #{@human_gameboard.cells[answer].ship.name}!"
+      end
+
+  end
+
+
 end
