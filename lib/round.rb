@@ -62,28 +62,29 @@ class Round
       @computer_gameboard.place(ship, random_coordinates)
     end
 
-    puts "I have laid out my ships on the grid."
-    puts "You now need to lay out your two ships."
+    puts "\nI have laid out my ships on the grid."
+    puts "\nYou now need to lay out your two ships."
 
   end
 
   def human_takes_first_turn
-    puts "The Cruiser is three units long and the Submarine is two units long."
+    puts "\nThe Cruiser is three units long and the Submarine is two units long.\n\n"
 
     puts @human_gameboard.render
 
     @human_player.ships.each do |ship|
-      puts "Enter the squares for the #{ship.name} (#{ship.length} spaces), ex:"
-      print ">"
+      puts "\nEnter the squares for the #{ship.name} (#{ship.length} spaces), ex:"
+      print "> "
       user_coordinates = gets.chomp.upcase.split
 
         until @human_gameboard.valid_placement?(ship, user_coordinates) == true
-          puts "Those are invalid coordinates. Please try again:"
-          print ">"
+          puts "\nThose are invalid coordinates. Please try again:"
+          print "> "
           user_coordinates = gets.chomp.upcase.split
         end
 
         @human_gameboard.place(ship, user_coordinates)
+        puts "\n"
         puts @human_gameboard.render(true)
     end
   end
@@ -91,21 +92,24 @@ class Round
   def turn
     # loop here to run until the number of turns equals the number of ships in the player and computer ships array
     # add a counter here? counts each turn every time it runs?
-    puts "=============COMPUTER BOARD============="
+    puts "\n=============COMPUTER BOARD============="
     puts @computer_gameboard.render
-    puts "==============PLAYER BOARD=============="
+    puts "\n==============PLAYER BOARD=============="
     puts @human_gameboard.render(true)
 
-    puts "Enter the coordinate for your shot:"
-    print ">"
+    puts "\nEnter the coordinate for your shot:"
+    print "> "
     answer = gets.chomp.upcase
 
     until @computer_gameboard.valid_coordinate?(answer) == true && !@computer_gameboard.cells[answer].fired_upon?
       #need to add something here about if they already fired on that shot they need to take another shot. some code above to check on that
-      puts "Please enter a valid coordinate:"
-      print ">"
+      puts "\nPlease enter a valid coordinate:"
+      print "> "
       answer = gets.chomp.upcase
     end
+
+    puts "\nFiring missile..."
+    sleep(2)
 
     @computer_gameboard.cells[answer].fire_upon
       if @computer_gameboard.cells[answer].render == "M"
@@ -116,7 +120,7 @@ class Round
         result = "hit and sunk my #{@computer_gameboard.cells[answer].ship.name}!"
       end
 
-    puts "Your shot on #{answer} was a #{result}"
+    puts "\nYour shot on #{answer} was a #{result}"
     #then we would display the result of the computer's shot
   end
 
@@ -136,16 +140,16 @@ class Round
         result = "My shot on #{random_shot} sunk your #{@human_gameboard.cells[random_shot].ship.name}!"
       end
 
-      puts "#{result}"
+      puts "\n#{result}"
   end
 
   def end_game
     if @human_player.ships.all? { |ship| ship.sunk? }
-      puts "I won!"
+      puts "\nI won!"
     elsif @computer_player.ships.all? { |ship| ship.sunk? }
-      puts "You won!"
+      puts "\nYou won!"
     end
-    puts "Would you like to play again?"
+    puts "\nWould you like to play again?"
 
 
   end

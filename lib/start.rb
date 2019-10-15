@@ -24,12 +24,12 @@ class Start
 
   def play?
     puts "Enter P to play. Enter Q to quit"
-    print ">"
+    print "> "
     answer = gets.chomp
 
     until answer.downcase == "p" or answer.downcase == "q" do
-      puts "Please enter a valid input."
-      print ">"
+      puts "\nPlease enter a valid input."
+      print "> "
       answer = gets.chomp
     end
 
@@ -40,7 +40,7 @@ class Start
       @round.play_game
     elsif answer.downcase == "q"
       @play_game = false
-      puts "OK. Come back another time."
+      puts "\nOK. Come back another time."
     end
 
   end
