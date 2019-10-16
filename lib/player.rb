@@ -1,4 +1,4 @@
-class Person
+class Player
 
   attr_accessor :ships
 

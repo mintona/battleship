@@ -36,6 +36,11 @@ class Board
     @cells.keys.include?(coordinate)
   end
 
+  #def all_coordinates_valid?
+  #coordinates.all? { |coord| valid_coordinate?(coord) }
+#end
+
+
   def letters_same?(ship, coordinates)
     coordinates.all? { |coord| coord[0] == coordinates[0][0]}
   end
@@ -78,6 +83,7 @@ class Board
   end
 
   def valid_placement?(ship_type, coordinates)
+    #method to repace code on line 86 above in line 39
     if (coordinates.all? { |coord| valid_coordinate?(coord) })
       cells_empty?(ship_type, coordinates) && (ship_type.length == coordinates.length) && coordinates_consecutive?(ship_type, coordinates)
     else
