@@ -64,30 +64,53 @@ class Gameplay
     @player = @prep.player
 
     @computer_board = @prep.computer_board
-    @player_board = @prep.computer_board
+    @player_board = @prep.player_board
 
     @prep.computer_places_ships
     @prep.player_places_ships
   end
 
+  def all_computer_ships_sunk?
+    @computer.ships.all? { |ship| ship.sunk? }
+  end
+
+  def all_player_ships_sunk?
+    @player.ships.all? { |ship| ship.sunk? }
+  end
+
   def play_rounds
     turn = Turn.new(@prep.all_players, @prep.all_boards)
 # prep could possily be the one to created the turn
-    until turn.all_ships_sunk?(@computer) || turn.all_ships_sunk?(@player)
+    until all_computer_ships_sunk? || all_player_ships_sunk?
     #player takes a turn
       turn.take_turn_player(@computer_board, turn.player_coordinate)
     #check to see if any ships were sunk
-        if turn.all_ships_sunk?(@computer)
+        if all_computer_ships_sunk? == true
           break
         end
       #if all ships were sunk, end
     #computer takes a turn
       turn.take_turn_computer(@player_board, turn.computer_coordinate)
       #if all ships were sunk, end
-        if turn.all_ships_sunk?(@player)
+        if all_player_ships_sunk? == true
           break
         end
     end
   end
+
+
+
+  def end_game
+require 'pry'; binding.pry
+  if all_player_ships_sunk?
+    puts "\nI won!"
+  elsif all_computer_ships_sunk?
+    puts "\nYou won!"
+  end
+    puts "\nWould you like to play again?"
+    play?
+  end
+
+
 
 end

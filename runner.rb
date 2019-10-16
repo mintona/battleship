@@ -26,4 +26,5 @@ game.play?
 game.start
 game.setup
 game.play_rounds
+game.end_game
 binding.pry
