@@ -1,33 +1,20 @@
 require_relative './lib/ship.rb'
 require_relative './lib/cell.rb'
 require_relative './lib/board.rb'
-require_relative './lib/round.rb'
 require_relative './lib/computer.rb'
-require_relative './lib/person.rb'
-require_relative './lib/start.rb'
-require 'pry'
+require_relative './lib/player.rb'
+require_relative './lib/gameplay.rb'
+require_relative './lib/prep.rb'
+require_relative './lib/turn.rb'
 
+game = Gameplay.new
 
-# play = Play.new
-#
-# play.greeting
-# play.play?
-# play.computer_takes_first_turn
-# puts play.gameboard.render(true)
-
-# might need to create a board here and then have the methods of play take the argument of the board so it can access the cells of the board
-
-start = Start.new
-
-
-start.greeting
-#start.play?
-
-
-until start.play_game == false
-  start.play?
+game.greeting
+game.play?
+until game.play_game == false
+  game.start
+  game.setup
+  game.play_rounds
+  game.end_game
+  game.play?
 end
-
-#how do we get the game to play over and over
-# start.greeting
-# start.play?
