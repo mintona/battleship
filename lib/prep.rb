@@ -46,12 +46,11 @@ class Prep
   def computer_places_ships
     @computer.ships.each do |ship|
       random_coordinates = @computer_board.cells.keys.sample(ship.length)
-      until @computer_board.valid_placement?(ship, random_coordinates) == true
+      until @computer_board.valid_placement?(ship, random_coordinates)
         random_coordinates = @computer_board.cells.keys.sample(ship.length)
       end
       @computer_board.place(ship, random_coordinates)
     end
-
     puts "\nI have laid out my ships on the grid."
     puts "\nYou now need to lay out your two ships."
   end
@@ -65,16 +64,15 @@ class Prep
       puts "\nEnter the squares for the #{ship.name} (#{ship.length} spaces), ex:"
       print "> "
       user_coordinates = gets.chomp.upcase.split
-
-        until @player_board.valid_placement?(ship, user_coordinates) == true
+        until @player_board.valid_placement?(ship, user_coordinates)
           puts "\nThose are invalid coordinates. Please try again:"
           print "> "
           user_coordinates = gets.chomp.upcase.split
         end
-
-        @player_board.place(ship, user_coordinates)
-        puts "\n"
-        puts @player_board.render(true)
+      @player_board.place(ship, user_coordinates)
+      puts "\n"
+      puts @player_board.render(true)
     end
   end
+
 end

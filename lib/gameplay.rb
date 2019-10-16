@@ -1,22 +1,19 @@
 class Gameplay
 
   attr_reader :computer, :player
-  attr_accessor :play_game, :turns, :prep, :computer_board, :player_board
+  attr_accessor :play_game, :prep, :computer_board, :player_board
 
   def initialize
     @play_game = true
     @prep = nil
-    @turns = nil
     @computer = nil
     @player = nil
     @computer_board = {}
     @player_board = {}
-
   end
 
   def greeting
     puts "\n\n         *~*~*~*~*~*~*~*~*~*~ Welcome to BATTLESHIP *~*~*~*~*~*~*~*~*~*~\n\n\n"
-
     puts "                                          # #  ( )"
     puts "                                       ___#_#___|__"
     puts "                                   _  |____________|  _"
@@ -43,9 +40,6 @@ class Gameplay
 
     if answer.downcase == "p"
       @play_game = true
-      # @round = Round.new
-      # @round.start = true
-      # @round.play_game
     elsif answer.downcase == "q"
       @play_game = false
       puts "\nOK. Come back another time."
@@ -80,31 +74,26 @@ class Gameplay
 
   def play_rounds
     turn = Turn.new(@prep.all_players, @prep.all_boards)
-# prep could possily be the one to created the turn
+
     until all_computer_ships_sunk? || all_player_ships_sunk?
-    #player takes a turn
-      turn.take_turn_player(@computer_board, turn.player_coordinate)
-    #check to see if any ships were sunk
-        if all_computer_ships_sunk? == true
+      turn.take_turn_player(turn.player_coordinate)
+        if all_computer_ships_sunk?
           break
         end
-      #if all ships were sunk, end
-    #computer takes a turn
-      turn.take_turn_computer(@player_board, turn.computer_coordinate)
-      #if all ships were sunk, end
-        if all_player_ships_sunk? == true
+      turn.take_turn_computer(turn.computer_coordinate)
+        if all_player_ships_sunk?
           break
         end
     end
   end
 
   def end_game
-  if all_player_ships_sunk?
-    puts "\nI won!"
-  elsif all_computer_ships_sunk?
-    puts "\nYou won!"
-  end
-    puts "\nWould you like to play again?"
+    if all_player_ships_sunk?
+      puts "\nI won!"
+    elsif all_computer_ships_sunk?
+      puts "\nYou won!"
+    end
+      puts "\nWould you like to play again?"
   end
 
 end
