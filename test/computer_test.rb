@@ -15,17 +15,22 @@ class ComputerTest < Minitest::Test
     assert_instance_of Computer, @computer
   end
 
-  def test_computer_ships_are_empty_initially
-    assert_equal true, @computer.ships.empty?
+  def test_it_starts_with_no_ships
+    assert_equal [], @computer.ships
   end
 
-  def test_computer_can_add_ships
+  def test_it_can_add_ships
     yacht = Ship.new("Yacht", 4)
-    @computer.add_ships(@cruiser)
-    @computer.add_ships(@submarine)
 
+    @computer.add_ships(@cruiser)
+    assert_equal 1, @computer.ships.length
+
+    @computer.add_ships(@submarine)
+    assert_equal 2, @computer.ships.length
+    
     assert_equal true, @computer.ships.include?(@cruiser)
     assert_equal true, @computer.ships.include?(@submarine)
+
     assert_equal false, @computer.ships.include?(yacht)
   end
 
