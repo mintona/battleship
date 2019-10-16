@@ -2,7 +2,7 @@ class Start
   attr_accessor :play_game, :play
 
   def initialize
-    @play_game = false
+    @play_game = true
     @round = nil
   end
 
@@ -24,22 +24,23 @@ class Start
 
   def play?
     puts "Enter P to play. Enter Q to quit"
-    print ">"
+    print "> "
     answer = gets.chomp
 
     until answer.downcase == "p" or answer.downcase == "q" do
-      puts "Please enter a valid input."
-      print ">"
+      puts "\nPlease enter a valid input."
+      print "> "
       answer = gets.chomp
     end
 
     if answer.downcase == "p"
-      @play_game = true
+      #@play_game = true
       @round = Round.new
       @round.start = true
       @round.play_game
     elsif answer.downcase == "q"
-      puts "OK. Come back another time."
+      @play_game = false
+      puts "\nOK. Come back another time."
     end
 
   end

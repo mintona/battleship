@@ -3,21 +3,31 @@ require_relative './lib/cell.rb'
 require_relative './lib/board.rb'
 require_relative './lib/round.rb'
 require_relative './lib/computer.rb'
-require_relative './lib/person.rb'
+require_relative './lib/player.rb'
 require_relative './lib/start.rb'
+require_relative './lib/gameplay.rb'
+require_relative './lib/prep.rb'
+require_relative './lib/turn.rb'
 require 'pry'
 
+# The code below works for master as it is as of 10/15 @ 4 pm
+# start = Start.new
+# start.greeting
+# until start.play_game == false
+#   start.play?
+# end
 
-# play = Play.new
-#
-# play.greeting
-# play.play?
-# play.computer_takes_first_turn
-# puts play.gameboard.render(true)
 
-# might need to create a board here and then have the methods of play take the argument of the board so it can access the cells of the board
 
-start = Start.new
+game = Gameplay.new
 
-start.greeting
-start.play?
+game.greeting
+until game.play_game == false
+game.play?
+  if game.play_game? == true
+    game.start
+    game.setup
+    game.play_rounds
+    game.end_game
+  end
+end
