@@ -22,8 +22,12 @@ require 'pry'
 game = Gameplay.new
 
 game.greeting
+until game.play_game == false
 game.play?
-game.start
-game.setup
-game.play_rounds
-binding.pry
+  if game.play_game? == true
+    game.start
+    game.setup
+    game.play_rounds
+    game.end_game
+  end
+end

@@ -17,8 +17,13 @@ class Turn
   end
 
   def player_coordinate
+    puts "\n=============COMPUTER BOARD============="
+    puts @computer_board.render
+    puts "\n==============PLAYER BOARD=============="
+    puts @player_board.render(true)
     puts "\nEnter the coordinate for your shot:"
     print "> "
+
     coordinate = gets.chomp.upcase
 
     until @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
