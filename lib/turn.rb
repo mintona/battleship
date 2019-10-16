@@ -27,28 +27,27 @@ class Turn
 
     coordinate = gets.chomp.upcase
 
+    if @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
+      coordinate
 
-  if !@computer_board.valid_coordinate?(coordinate)
-    until @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
-    puts "\nPlease enter a valid coordinate:"
-    print "> "
-    coordinate = gets.chomp.upcase
-    end
-    coordinate
-
-  elsif @computer_board.valid_coordinate?(coordinate) == true && @computer_board.cells[coordinate].fired_upon?
-        puts "\nYou have already fired upon this cell."
-        until @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
+    elsif !@computer_board.valid_coordinate?(coordinate)
+      until @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
         puts "\nPlease enter a valid coordinate:"
         print "> "
         coordinate = gets.chomp.upcase
-        end
-  coordinate
+      end
+      coordinate
 
-  elsif @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
-    coordinate
+    elsif @computer_board.valid_coordinate?(coordinate) == true && @computer_board.cells[coordinate].fired_upon?
+      puts "\nYou have already fired upon this cell."
+      until @computer_board.valid_coordinate?(coordinate) == true && !@computer_board.cells[coordinate].fired_upon?
+        puts "\nPlease enter a valid coordinate:"
+        print "> "
+        coordinate = gets.chomp.upcase
+      end
+      coordinate
+    end
   end
-end
 
   def all_ships_sunk?(player_or_computer)
     player_or_computer.ships.all? { |ship| ship.sunk? }
