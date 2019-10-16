@@ -27,11 +27,11 @@ class Gameplay
     puts "           |_______________________________________________WWS_________/"
     puts "       wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
     puts "     wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-    puts "        wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww \n\n"
+    puts "        wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww \n"
   end
 
   def play?
-    puts "Enter P to play. Enter Q to quit."
+    puts "\nEnter P to play. Enter Q to quit."
     print "> "
     answer = gets.chomp
 
@@ -98,10 +98,7 @@ class Gameplay
     end
   end
 
-
-
   def end_game
-require 'pry'; binding.pry
   if all_player_ships_sunk?
     puts "\nI won!"
   elsif all_computer_ships_sunk?
@@ -109,7 +106,5 @@ require 'pry'; binding.pry
   end
     puts "\nWould you like to play again?"
   end
-
-
 
 end
