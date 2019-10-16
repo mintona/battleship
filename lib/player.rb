@@ -1,6 +1,6 @@
 class Player
 
-  attr_accessor :ships
+  attr_reader :ships
 
   def initialize
     @ships = []

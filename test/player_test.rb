@@ -15,18 +15,22 @@ class PlayerTest < Minitest::Test
     assert_instance_of Player, @player
   end
 
-  def test_user_ships_are_empty_initially
-    assert_equal true, @player.ships.empty?
+  def test_it_starts_without_ships
+    assert_equal [], @player.ships
   end
 
-  def test_user_can_add_ships
-
+  def test_it_can_add_ships
     yacht = Ship.new("Yacht", 4)
+
     @player.add_ships(@cruiser)
+    assert_equal 1, @player.ships.length
+
     @player.add_ships(@submarine)
+    assert_equal 2, @player.ships.length
 
     assert_equal true, @player.ships.include?(@cruiser)
     assert_equal true, @player.ships.include?(@submarine)
+
     assert_equal false, @player.ships.include?(yacht)
   end
 
