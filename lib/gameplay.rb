@@ -4,7 +4,7 @@ class Gameplay
   attr_accessor :play_game, :turns, :prep, :computer_board, :player_board
 
   def initialize
-    @play_game = false
+    @play_game = true
     @prep = nil
     @turns = nil
     @computer = nil
@@ -108,7 +108,6 @@ require 'pry'; binding.pry
     puts "\nYou won!"
   end
     puts "\nWould you like to play again?"
-    play?
   end
 
 
