@@ -50,7 +50,7 @@ class Board
     end
   end
 
-  def all_coordinates_valid?(coordinates) #add a test for this
+  def all_coordinates_valid?(coordinates)
     coordinates.all? { |coord| valid_coordinate?(coord) }
   end
 

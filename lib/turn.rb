@@ -58,13 +58,13 @@ class Turn
     sleep(1.5)
 
     @computer_board.cells[coordinate].fire_upon
-      if @computer_board.cells[coordinate].render == "M"
-        result = "miss."
-      elsif @computer_board.cells[coordinate].render == "H"
-        result = "hit!"
-      elsif @computer_board.cells[coordinate].render == "X"
-        result = "hit and sunk my #{@computer_board.cells[coordinate].ship.name}!"
-      end
+    if @computer_board.cells[coordinate].render == "M"
+      result = "miss."
+    elsif @computer_board.cells[coordinate].render == "H"
+      result = "hit!"
+    elsif @computer_board.cells[coordinate].render == "X"
+      result = "hit and sunk my #{@computer_board.cells[coordinate].ship.name}!"
+    end
 
     puts "\nYour shot on #{coordinate} was a #{result}"
     sleep(1.5)
@@ -75,13 +75,13 @@ class Turn
     sleep(1.5)
 
     @player_board.cells[coordinate].fire_upon
-      if @player_board.cells[coordinate].render == "M"
-        result = "miss."
-      elsif @player_board.cells[coordinate].render == "H"
-        result = "hit!"
-      elsif @player_board.cells[coordinate].render == "X"
-        result = "hit and sunk your #{@player_board.cells[coordinate].ship.name}!"
-      end
+    if @player_board.cells[coordinate].render == "M"
+      result = "miss."
+    elsif @player_board.cells[coordinate].render == "H"
+      result = "hit!"
+    elsif @player_board.cells[coordinate].render == "X"
+      result = "hit and sunk your #{@player_board.cells[coordinate].ship.name}!"
+    end
 
     puts "\nMy shot on #{coordinate} was a #{result}"
     sleep(1.5)

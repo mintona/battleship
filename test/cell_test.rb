@@ -45,21 +45,16 @@ class CellTest < Minitest::Test
 
   def test_it_changes_ship_health_when_fired_upon
     @cell.place_ship(@cruiser)
-
     assert_equal @cruiser, @cell.ship
-
     assert_equal false, @cell.fired_upon?
 
     @cell.fire_upon
-
     assert_equal 2, @cell.ship.health
-
     assert_equal true, @cell.fired_upon?
   end
 
   def test_it_can_render_properly_when_empty
     assert_equal true, @cell.empty?
-
     assert_equal ".", @cell.render
 
     @cell.fire_upon
