@@ -61,7 +61,7 @@ class Prep
     puts @player_board.render
 
     @player.ships.each do |ship|
-      puts "\nEnter the squares for the #{ship.name} (#{ship.length} spaces), ex:"
+      puts "\nEnter the squares for the #{ship.name} (#{ship.length} spaces):"
       print "> "
       user_coordinates = gets.chomp.upcase.split
         until @player_board.valid_placement?(ship, user_coordinates)
